@@ -1,6 +1,6 @@
 ---
 title: "Homework 6"
-author: "[Insert your name here]{style='background-color: yellow;'}"
+author: "Nicholas Allen{style='background-color: yellow;'}"
 toc: true
 title-block-banner: true
 title-block-style: default
@@ -8,7 +8,7 @@ execute:
   freeze: true
   cache: true
 # format:
-  html: # comment this line to get pdf
+  #html: # comment this line to get pdf
   pdf: 
     fig-width: 7
     fig-height: 7
@@ -68,10 +68,10 @@ Read the data file as a tibble in R. Preprocess the data such that:
 2. all column names to lower case for consistency
 3. Any observations with missing values are dropped
 
-```R
+```{R}
 path <- "data/spending.csv"
 
-df <- ... # Insert your code here
+df <- read_csv(path)
 ```
 
 ---
@@ -80,8 +80,8 @@ df <- ... # Insert your code here
 
 Visualize the correlation between the variables using the `corrplot()` function. What do you observe? What does this mean for the model?
 
-```R
-df_x  %>% ... # Insert your code here
+```{R}
+df  %>% cor() %>% corrplot()
 ```
 
 ---
@@ -91,8 +91,9 @@ df_x  %>% ... # Insert your code here
 Run a linear regression model to predict the `income` variable using the remaining predictors. Interpret the coefficients and summarize your results. 
 
 
-```R
-... # Insert your code here
+```{R}
+model_lm <- lm(income ~ ., data=df)
+summary(model_lm)
 ```
 
 ---
@@ -101,8 +102,8 @@ Run a linear regression model to predict the `income` variable using the remaini
 
 Diagnose the model using the `vif()` function. What do you observe? What does this mean for the model?
 
-```R
-... # Insert your code here
+```{R}
+vif(model_lm)
 ```
 
 ---
