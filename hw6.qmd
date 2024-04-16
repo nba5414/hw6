@@ -83,6 +83,8 @@ Visualize the correlation between the variables using the `corrplot()` function.
 ```{R}
 df  %>% cor() %>% corrplot()
 ```
+From the corplot I can conclude that there are a lot of variables that correlate highly with each other in the positive direciton.
+
 
 ---
 
@@ -96,6 +98,14 @@ model_lm <- lm(income ~ ., data=df)
 summary(model_lm)
 ```
 
+
+When you increase spending in audio_eqipment by 1, income increases by 0.6
+
+When you increase spending in video_games by 1, income increases by 0.86
+
+When you increase spending in tablets by 1, income increases by 0.64
+
+
 ---
 
 ###### 1.3 (5 points)
@@ -106,15 +116,18 @@ Diagnose the model using the `vif()` function. What do you observe? What does th
 vif(model_lm)
 ```
 
+I observe that there a lot of variables with high values, which shows evidence of multicolinearity in the model.
+
+
 ---
 
 ###### 1.4 (5 points)
 
 Perform PCA using the `princomp` function in R. Print the summary of the PCA object.
 
-```R
-pca <- ... # Insert your code here
-... # Insert your code here
+```{R}
+pca <- princomp( ~ ., data=df)
+summary(pca)
 ```
 
 ---
@@ -123,16 +136,17 @@ pca <- ... # Insert your code here
 
 Make a screeplot of the proportion of variance explained by each principal component. How many principal components would you choose to keep? Why?
 
-```R
-... # Insert your code here
+```{R}
+screeplot(pca)
 ```
 
+I would choose to keep three or four components because there is a significant drop off in varience after that.
 
 ###### 1.6 (5 points)
 
 By setting any factor loadings below $0.2$ to $0$, summarize the factor loadings for the principal components that you chose to keep. 
 
-```R
+```{R}
 clean_loadings <- ... # Insert your code here
 ```
 
